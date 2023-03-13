@@ -1,9 +1,11 @@
-## Available Scripts
+# Readme
+## 1. 介紹
+此Project是一個將各種Sorting演算法視覺化的網頁，使用React、JavaScript、HTML、CSS等技術，藉此增進演算法實作能力。
 
-In the project directory, you can run:
+## 2. 網站
+
+
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
