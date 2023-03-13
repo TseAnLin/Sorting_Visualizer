@@ -3,18 +3,20 @@ import { getMergeSortAnimations } from '../sortingAlgorithms/sortingAlgorithms.j
 import './SortingVisualizer.css';
 
 // Change this value for the speed of the animations.
-const ANIMATION_SPEED_MS = 10;
+const ANIMATION_SPEED_MS = 5;
 
 // Change this value for the number of bars (value) in the array.
 const NUMBER_OF_ARRAY_BARS = 100;
 
 // This is the main color of the array bars.
-const PRIMARY_COLOR = '#14213D';
+const PRIMARY_COLOR = '#cbaa70';
 
 // This is the color of array bars that are being compared throughout the animations.
-const SECONDARY_COLOR = '#FCA311';
+const SECONDARY_COLOR = '#28FF28';
 
 const FINAL_COLOR = '#921AFF';
+
+const STARNDARD_COLOR = '#F9F900';
 
 export default class SortingVisualizer extends React.Component {
   constructor(props) {
@@ -87,7 +89,6 @@ export default class SortingVisualizer extends React.Component {
     }
   }
 
-
   // NOTE: This method will only work if your sorting algorithms actually return
   // the sorted arrays; if they return the animations (as they currently do), then
   // this method will be broken.
@@ -113,18 +114,18 @@ export default class SortingVisualizer extends React.Component {
 
     return (
       <div className="array-container">
-        <div className="button">
+        <div class="button">
           <p>{this.state.numberOfArray}</p>
           <input type="range" min="10" max="100" onChange={(e) => this.onChange(e.target.value)} />
-          <button className='btn' id="sort" onClick={() => this.mergeSort()}>Sort</button>
-          <button className='btn' id="reset" onClick={() => this.resetArray()}>Reset</button>
+          <button class="btn" id="sort" onClick={() => this.mergeSort()}>Sort</button>
+          <button class="btn" id="reset" onClick={() => this.resetArray()}>Reset</button>
         </div>
         <div className="leetcode-container">
-          <a href="https://leetcode.com/problemset/all/" target="_blank" rel="noreferrer">
+          <a href="https://leetcode.com/tag/merge-sort/" target="_blank" rel="noreferrer">
             <button className="leetcode-button">Practice in Leetcode</button>
           </a>
         </div>
-        <p class="title">Main Page</p>
+        <p class="title">Merge Sort</p>
         <div class="bar" style={{ width: `${900 + NUMBER_OF_ARRAY_BARS * 2}px` }}>
           {array.map((value, idx) => (
             <div

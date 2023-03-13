@@ -1,14 +1,16 @@
-//to view the web => 1. unset HOST 2. npm start
 import React from 'react';
-import SortingVisualizer from './SortingVisualizer/SortingVisualizer';
 import './App.css';
+import Home from './Home.js';
+import Main from './Main.js'
 
-// Function Component (props is empty)
+
 function App() {
   return (
     <div className="App">
-      <SortingVisualizer />
+      <Main></Main>
     </div>
+
+
   );
 }
 
