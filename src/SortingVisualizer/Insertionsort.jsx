@@ -9,12 +9,12 @@ const ANIMATION_SPEED_MS = 3;
 const NUMBER_OF_ARRAY_BARS = 100;
 
 // This is the main color of the array bars.
-const PRIMARY_COLOR = '#cbaa70';
+const PRIMARY_COLOR = '#1E325C';
 
 // This is the color of array bars that are being compared throughout the animations.
-const SECONDARY_COLOR = '#28FF28';
+const SECONDARY_COLOR = '#FCA311';
 
-const FINAL_COLOR = '#921AFF';
+const FINAL_COLOR = '#32539A';
 
 const STARNDARD_COLOR = '#F9F900';
 
@@ -45,9 +45,29 @@ export default class SortingVisualizer extends React.Component {
     }
     this.setState({ array });
   }
-
+  resetArraywithNum(Num) {
+    this.state.numberOfArray = Num;
+    const array = [];
+    for (let i = 0; i < this.state.numberOfArray; i++) {
+      array.push(randomIntFromInterval(5, 380));
+    }
+    var arrayBars = document.getElementsByClassName('array-bar');
+    var len = arrayBars.length;
+    for (var i = 0; i < len; i++) {
+      arrayBars[i].style.backgroundColor = PRIMARY_COLOR;
+    }
+    this.setState({ array });
+  }
   insertionSort() {
+    this.props.sortingDetect(true);
     const animations = getInsertionSortAnimations(this.state.array);
+
+    const modifyBar = document.getElementById('modifyBar');
+    const sortButton = document.getElementById('sort');
+    const resetButton = document.getElementById('reset');
+    modifyBar.disabled = true;
+    sortButton.disabled = true; // disable the sort button
+    resetButton.disabled = true; // disable the reset button
 
     for (let i = 0; i < animations.length; i++) {
       const arrayBars = document.getElementsByClassName('array-bar');
@@ -82,6 +102,12 @@ export default class SortingVisualizer extends React.Component {
         }, i * ANIMATION_SPEED_MS);
       }
     }
+    setTimeout(() => {
+      modifyBar.disabled = false;
+      sortButton.disabled = false; // enable the sort button
+      resetButton.disabled = false; // enable the reset button
+      this.props.sortingDetect(false);
+    }, animations.length * ANIMATION_SPEED_MS);
   }
 
   // NOTE: This method will only work if your sorting algorithms actually return
@@ -102,6 +128,7 @@ export default class SortingVisualizer extends React.Component {
 
   onChange(value) {
     this.setState({ numberOfArray: value });
+    this.resetArraywithNum(value);
   }
 
   render() {
@@ -110,17 +137,13 @@ export default class SortingVisualizer extends React.Component {
       <div className="array-container">
         <div class="button">
           <p>{this.state.numberOfArray}</p>
-          <input type="range" min="10" max="100" onChange={(e) => this.onChange(e.target.value)} />
+          <input id="modifyBar" type="range" min="10" max="200" value={this.state.numberOfArray} onChange={(e) => this.onChange(e.target.value)} />
           <button class="btn" id="sort" onClick={() => this.insertionSort()}>Sort</button>
           <button class="btn" id="reset" onClick={() => this.resetArray()}>Reset</button>
         </div>
-        <div className="leetcode-container">
-          <a href="https://leetcode.com/problems/insertion-sort-list/" target="_blank" rel="noreferrer">
-            <button className="leetcode-button">Practice in Leetcode</button>
-          </a>
-        </div>
+
         <p class="title">Insertion Sort</p>
-        <div class="bar" style={{ width: `${900 + NUMBER_OF_ARRAY_BARS * 2}px` }}>
+        <div class="bar" style={{ width: `${75}vw` }}>
           {array.map((value, idx) => (
             <div
               className="array-bar"
@@ -128,10 +151,11 @@ export default class SortingVisualizer extends React.Component {
               style={{
                 backgroundColor: PRIMARY_COLOR,
                 height: `${value}px`,
-                width: `${900 / NUMBER_OF_ARRAY_BARS}px`
+                width: `${75 / this.state.numberOfArray - 0.05}vw`
               }}></div>
           ))}
         </div>
+
       </div>
     );
   }
@@ -152,3 +176,5 @@ function arraysAreEqual(arrayOne, arrayTwo) {
   }
   return true;
 }
+
+

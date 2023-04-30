@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import { getMergeSortAnimations } from '../sortingAlgorithms/sortingAlgorithms.js';
 import './SortingVisualizer.css';
 
@@ -14,7 +14,7 @@ const PRIMARY_COLOR = '#14213D';
 // This is the color of array bars that are being compared throughout the animations.
 const SECONDARY_COLOR = '#FCA311';
 
-const FINAL_COLOR = '#921AFF';
+const FINAL_COLOR = '#14213D';
 
 export default class SortingVisualizer extends React.Component {
   constructor(props) {
@@ -110,7 +110,6 @@ export default class SortingVisualizer extends React.Component {
 
   render() {
     const array = this.state.array;
-
     return (
       <div className="array-container">
         <div className="button">
@@ -125,7 +124,7 @@ export default class SortingVisualizer extends React.Component {
           </a>
         </div>
         <p class="title">Main Page</p>
-        <div class="bar" style={{ width: `${900 + NUMBER_OF_ARRAY_BARS * 2}px` }}>
+        <div class="bar" style={{ width: `${75}vw` }}>
           {array.map((value, idx) => (
             <div
               className="array-bar"
@@ -133,7 +132,7 @@ export default class SortingVisualizer extends React.Component {
               style={{
                 backgroundColor: PRIMARY_COLOR,
                 height: `${value}px`,
-                width: `${900 / NUMBER_OF_ARRAY_BARS}px`
+                width: `${75 / this.state.numberOfArray -0.05}vw`
               }}></div>
           ))}
         </div>
@@ -156,4 +155,4 @@ function arraysAreEqual(arrayOne, arrayTwo) {
     }
   }
   return true;
-}
+}*/

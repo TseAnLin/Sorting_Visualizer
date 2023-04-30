@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Home from './Home.js';
 import Main from './Main.js'
@@ -9,8 +9,6 @@ function App() {
     <div className="App">
       <Main></Main>
     </div>
-
-
   );
 }
 

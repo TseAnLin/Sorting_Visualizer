@@ -9,11 +9,7 @@ import { useRef, onCopy } from 'react';
 import './CodeBlock.css';
 import Heapsort from './SortingVisualizer/Heapsort.jsx';
 
-
-function HeapHome() {
-    const [language, setLanguage] = useState('python');
-    const codeRef = useRef(null);
-    const pythonCode = `
+const pythonCode = `
     def heapify(arr, n, i):
       largest = i
       l = 2 * i + 1
@@ -42,7 +38,7 @@ function HeapHome() {
           heapify(arr, i, 0)
     
 `;
-    const jsCode = `
+const jsCode = `
 
     function heapSort(array) {
         let size = array.length
@@ -79,7 +75,7 @@ function HeapHome() {
       }
       
 `;
-    const cppCode = `void heapify(int arr[], int n, int i) {
+const cppCode = `void heapify(int arr[], int n, int i) {
         int largest = i;
         int left = 2 * i + 1;
         int right = 2 * i + 2;
@@ -106,9 +102,25 @@ function HeapHome() {
         }
     }
     `;
+class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isSorting: false,
+            language: 'python',
+            code: pythonCode,
+            pythonCode: pythonCode,
+            jsCode: jsCode,
+            cppCode: cppCode,
+        };
+        this.codeRef = React.createRef();
+        this.handleCopyClick = this.handleCopyClick.bind(this);
+        this.handleLanguageChange = this.handleLanguageChange.bind(this);
+        this.setState({ code: this.state.pythonCode, language: 'python' });
+    };
 
-    function handleCopyClick() {
-        const codeElement = codeRef.current;
+    handleCopyClick() {
+        const codeElement = this.codeRef.current;
         if (codeElement) {
             const range = document.createRange();
             range.selectNode(codeElement);
@@ -119,67 +131,70 @@ function HeapHome() {
         }
     }
 
-    function handleLanguageChange(event) {
-        setLanguage(event.target.value);
+    handleLanguageChange(event) {
+        if (event.target.value === 'python') {
+            this.setState({ code: this.state.pythonCode, language: 'python' });
+        } else if (event.target.value === 'javascript') {
+            this.setState({ code: this.state.jsCode, language: 'javascript' });
+        } else if (event.target.value === 'cpp') {
+            this.setState({ code: this.state.cppCode, language: 'cpp' });
+        }
     }
 
-    let code;
-    if (language === 'python') {
-        code = pythonCode;
-    } else if (language === 'javascript') {
-        code = jsCode;
-    } else if (language === 'cpp') {
-        code = cppCode;
-    }
-    return (
-        <Container>
-            <Row>
-                <Col >
-                    <Heapsort></Heapsort>
-                </Col>
-            </Row>
-            <Row>
-                <Col md={6} className='code'>
-                    <div className="code-block">
-                        <select value={language} onChange={handleLanguageChange}>
-                            <option value="python">Python</option>
-                            <option value="javascript">JavaScript</option>
-                            <option value="cpp">C++</option>
-                        </select>
-                        <button onClick={handleCopyClick}>Copy</button>
-                        <pre ref={codeRef} className={`language-${language}`}>
-                            {code}
-                        </pre>
-                    </div>
-                </Col>
-                <Col md={6}>
-                    <div className="TextBlock"  >
-                        <row>
-                            <div id="text-block">
-                                <h2>Description</h2>
-                                <p>Heap Sort is an in-place iterative sorting algorithm based on auxiliary data structures called heap. It's less efficient than algorithm with the same time complexity and it's not suitable for data structures with few elements.
+    render() {
+        return (
+            <Container>
+                <Row>
+                    <Col >
+                        <Heapsort {...this.props}></Heapsort>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={6} className='code'>
+                        <div className="code-block">
+                            <select value={this.state.language} onChange={this.handleLanguageChange}>
+                                <option value="python">Python</option>
+                                <option value="javascript">JavaScript</option>
+                                <option value="cpp">C++</option>
+                            </select>
+                            <button onClick={this.handleCopyClick}>Copy</button>
+                            <pre ref={this.codeRef} className={`language-${this.state.language}`}>
+                                {this.state.code}
+                            </pre>
+                        </div>
+                    </Col>
+                    <Col md={6}>
+                        <div className="TextBlock"  >
+                            <row>
+                                <div id="text-block">
+                                    <h2>Description</h2>
+                                    <p>Heap Sort is an in-place iterative sorting algorithm based on auxiliary data structures called heap. It's less efficient than algorithm with the same time complexity and it's not suitable for data structures with few elements.
 
-                                    The heap is a data structure representable as a binary tree, where each node has a value bigger or equal to its children. Consequently, the root will hold the maximum value.</p>
-                            </div>
-                        </row>
-                        <row>
-                            <div id="text-block-2" >
-                                <h3>Complexity</h3>
-                                <p>Average:O(n × n)</p>
-                                <p>Best:O(n × log n )</p>
-                                <p>Worst:O(n × log n)</p>
-                                <p>Space:O(1)</p>
-                            </div>
-                        </row>
-                    </div>
-                </Col>
-            </Row>
-            <br />
-        </Container>
-    );
+                                        The heap is a data structure representable as a binary tree, where each node has a value bigger or equal to its children. Consequently, the root will hold the maximum value.</p>
+                                </div>
+                            </row>
+                            <row>
+                                <div id="text-block-2" >
+                                    <h3>Complexity</h3>
+                                    <p>Average : O(n × log n)</p>
+                                    <p>Best : O(n × log n )</p>
+                                    <p>Worst : O(n × log n)</p>
+                                    <p>Space : O(1)</p>
+                                </div>
+                            </row>
+                        </div>
+                    </Col>
+                </Row>
+                <br />
+                <div className="leetcode-container">
+                    <a href="https://leetcode.com/problems/sort-an-array/description/" target="_blank" rel="noreferrer">
+                        <button className="leetcode-button">Practice in Leetcode</button>
+                    </a>
+                </div>
+            </Container>
+        );
+    }
 }
 
-export default HeapHome;
-
-
+export default Home;
 

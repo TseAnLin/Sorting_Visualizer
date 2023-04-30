@@ -9,14 +9,7 @@ import './TextBlock.css';
 import { useRef, onCopy } from 'react';
 import './CodeBlock.css';
 
-
-
-
-
-function Home() {
-    const [language, setLanguage] = useState('python');
-    const codeRef = useRef(null);
-    const pythonCode = `def partition(array, start, end):
+const pythonCode = `def partition(array, start, end):
     pivot = array[start]
     low = start + 1
     high = end
@@ -45,7 +38,7 @@ def quick_sort(array, start, end):
     quick_sort(array, start, p-1)
     quick_sort(array, p+1, end)
 `;
-    const jsCode = `
+const jsCode = `
     function quickSort(array, start, end) {
         if (start === undefined) {
           start = 0;
@@ -68,7 +61,7 @@ def quick_sort(array, start, end):
         quickSort(array, start, rEnd);
       }
 `;
-    const cppCode = `void swap(int* a, int* b)
+const cppCode = `void swap(int* a, int* b)
     {
         int t = *a;
         *a = *b;
@@ -103,8 +96,25 @@ def quick_sort(array, start, end):
         }
     }`;
 
-    function handleCopyClick() {
-        const codeElement = codeRef.current;
+class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isSorting: false,
+            language: 'python',
+            code: pythonCode,
+            pythonCode: pythonCode,
+            jsCode: jsCode,
+            cppCode: cppCode,
+        };
+        this.codeRef = React.createRef();
+        this.handleCopyClick = this.handleCopyClick.bind(this);
+        this.handleLanguageChange = this.handleLanguageChange.bind(this);
+        this.setState({ code: this.state.pythonCode, language: 'python' });
+    };
+
+    handleCopyClick() {
+        const codeElement = this.codeRef.current;
         if (codeElement) {
             const range = document.createRange();
             range.selectNode(codeElement);
@@ -115,67 +125,73 @@ def quick_sort(array, start, end):
         }
     }
 
-    function handleLanguageChange(event) {
-        setLanguage(event.target.value);
+    handleLanguageChange(event) {
+        if (event.target.value === 'python') {
+            this.setState({ code: this.state.pythonCode, language: 'python' });
+        } else if (event.target.value === 'javascript') {
+            this.setState({ code: this.state.jsCode, language: 'javascript' });
+        } else if (event.target.value === 'cpp') {
+            this.setState({ code: this.state.cppCode, language: 'cpp' });
+        }
     }
 
-    let code;
-    if (language === 'python') {
-        code = pythonCode;
-    } else if (language === 'javascript') {
-        code = jsCode;
-    } else if (language === 'cpp') {
-        code = cppCode;
-    }
-    return (
-        <Container>
-            <Row>
-                <Col >
-                    <Quicksort></Quicksort>
-                </Col>
-            </Row>
-            <Row>
-                <Col md={6} className='code'>
-                    <div className="code-block">
-                        <select value={language} onChange={handleLanguageChange}>
-                            <option value="python">Python</option>
-                            <option value="javascript">JavaScript</option>
-                            <option value="cpp">C++</option>
-                        </select>
-                        <button onClick={handleCopyClick}>Copy</button>
-                        <pre ref={codeRef} className={`language-${language}`}>
-                            {code}
-                        </pre>
-                    </div>
-                </Col>
-                <Col md={6}>
-                    <div className="TextBlock"  >
-                        <row>
-                            <div id="text-block">
-                                <h2>Description</h2>
-                                <p>Quick Sort is a sorting algorithm based on splitting the data structure in smaller partitions and sort them recursively until the data structure is sorted.
+    render() {
+        return (
+            <Container>
+                <Row>
+                    <Col >
+                        <Quicksort {...this.props}></Quicksort>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={6} className='code'>
+                        <div className="code-block">
+                            <select value={this.state.language} onChange={this.handleLanguageChange}>
+                                <option value="python">Python</option>
+                                <option value="javascript">JavaScript</option>
+                                <option value="cpp">C++</option>
+                            </select>
+                            <button onClick={this.handleCopyClick}>Copy</button>
+                            <pre ref={this.codeRef} className={`language-${this.state.language}`}>
+                                {this.state.code}
+                            </pre>
+                        </div>
+                    </Col>
+                    <Col md={6}>
+                        <div className="TextBlock"  >
+                            <row>
+                                <div id="text-block">
+                                    <h2>Description</h2>
+                                    <p>Quick Sort is a sorting algorithm based on splitting the data structure in smaller partitions and sort them recursively until the data structure is sorted.
 
-                                    This division in partitions is done based on an element, called pivot: all the elements bigger than the pivot get placed on the right side of the structure, the smaller ones to the left, creating two partitions. Next, this procedure gets applied recursively to the two partitions and so on.</p>
-                            </div>
-                        </row>
-                        <row>
-                            <div id="text-block-2" >
-                                <h3>Complexity</h3>
-                                <p>Average:O(n × log n)</p>
-                                <p>Best:O(n × log n)</p>
-                                <p>Worst:O(n ×  n)</p>
-                                <p>Space:O(n)</p>
-                            </div>
-                        </row>
-                    </div>
-                </Col>
-            </Row>
-            <br />
-        </Container>
-    );
+                                        This division in partitions is done based on an element, called pivot: all the elements bigger than the pivot get placed on the right side of the structure, the smaller ones to the left, creating two partitions. Next, this procedure gets applied recursively to the two partitions and so on.</p>
+                                </div>
+                            </row>
+                            <row>
+                                <div id="text-block-2" >
+                                    <h3>Complexity</h3>
+                                    <p>Average : O(n × log n)</p>
+                                    <p>Best : O(n × log n)</p>
+                                    <p>Worst : O(n ×  n)</p>
+                                    <p>Space : O(n)</p>
+                                </div>
+                            </row>
+                        </div>
+                    </Col>
+                </Row>
+                <br />
+                <div className="leetcode-container">
+                    <a href="https://leetcode.com/problems/sort-an-array/description/" target="_blank" rel="noreferrer">
+                        <button className="leetcode-button">Practice in Leetcode</button>
+                    </a>
+                </div>
+            </Container>
+        );
+    }
 }
 
 export default Home;
+
 
 
 

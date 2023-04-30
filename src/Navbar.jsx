@@ -18,7 +18,7 @@ function NavBar() {
                 <Navbar.Brand href="/">
                     <img src={logo} className="img-fluid logo" alt="brand" />
                     {/* <Link className="navbar-brand" to="/">XAI</Link> */}
-                </Navbar.Brand>
+                </Navbar.Brand >
 
                 <Navbar.Toggle
                     aria-controls="navbarResponsive"
@@ -79,8 +79,8 @@ function NavBar() {
                         </Nav.Item> */}
                     </Nav>
                 </Navbar.Collapse>
-            </Container>
-        </Navbar>
+            </Container >
+        </Navbar >
     );
 }
 

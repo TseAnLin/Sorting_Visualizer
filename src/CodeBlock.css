@@ -24,6 +24,8 @@ pre[class*="language-"] {
     margin: 0 auto;
     max-height: 350px;
     width: 80%;
+    margin-top: 3vh;
+    margin-bottom:3vh;
 }
 
 select {

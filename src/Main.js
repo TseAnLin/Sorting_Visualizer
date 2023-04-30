@@ -11,82 +11,92 @@ import Quicksort from './QuickHome.js';
 import Mergesort from './MergeHome.js';
 
 
+class Main extends React.Component {
+    //const [tablePage, setTablePage] = useState(0);
 
-
-
-
-
-
-
-const Main = () => {
-
-    const [tablePage, setTablePage] = useState(0);
-
-    //const history = useHistory();
-    //const patientStates = useSelector(rMedSelectPatient);
-    //console.log(patientStates)
-
+    /*
     useEffect(() => {
         fbasePage();
-    }, []);
+        handleSort();
+        //setIsSorting(false);
+    }, []);*/
 
-    const fbasePage = () => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isSorting: false,
+        }
+    }
+
+    componentDidMount() {
+        this.fbasePage();
+    }
+
+    sortingDetect = (sorting) => {
+        this.setState({ isSorting: sorting });
+    }
+
+    fbasePage = () => {
         ReactDOM.render(
             <Home />,
             document.getElementById('managerView')
         );
     }
 
-    const Merge_page = () => {
+    Merge_page = () => {
         ReactDOM.render(
-            <Mergesort />,
+            //<Mergesort isSorting={this.state.isSorting} sortingDetect={this.state.sortingDetect} />,
+            <Mergesort isSorting={this.state.isSorting} sortingDetect={this.sortingDetect} />,
             document.getElementById('managerView')
         );
     }
-    const Quick_page = () => {
+    Quick_page = () => {
         ReactDOM.render(
-            <Quicksort />,
+            <Quicksort isSorting={this.state.isSorting} sortingDetect={this.sortingDetect} />,
             document.getElementById('managerView')
         );
     }
-    const Heap_page = () => {
+    Heap_page = () => {
         ReactDOM.render(
-            <Heapsort />,
+            <Heapsort isSorting={this.state.isSorting} sortingDetect={this.sortingDetect} />,
             document.getElementById('managerView')
         );
     }
-    const Insertion_page = () => {
+    Insertion_page = () => {
         ReactDOM.render(
-            <Insertionsort />,
+            <Insertionsort isSorting={this.state.isSorting} sortingDetect={this.sortingDetect} />,
             document.getElementById('managerView')
         );
     }
-    const Bubble_page = () => {
+    Bubble_page = () => {
         ReactDOM.render(
-            <Bubblesort />,
+            <Bubblesort isSorting={this.state.isSorting} sortingDetect={this.sortingDetect} />,
             document.getElementById('managerView')
         );
     }
-
-    return (
-        <Container>
-            <Row>
-                <Col md="auto">
-                    <Nav variant="tabs" defaultActiveKey="baseData" className="flex-row justify-content-center" style={{ border: 'none', fontWeight: "bold" }} >
-                        <Nav.Link onClick={fbasePage}>Mainpage</Nav.Link>
-                        <Nav.Link onClick={Merge_page}>Merge Sort</Nav.Link>
-                        <Nav.Link onClick={Bubble_page}>Bubble Sort</Nav.Link>
-                        <Nav.Link onClick={Insertion_page}>Insertion Sort</Nav.Link>
-                        <Nav.Link onClick={Quick_page}>Quick Sort</Nav.Link>
-                        <Nav.Link onClick={Heap_page}>Heap Sort</Nav.Link>
-                    </Nav>
-                </Col>
-                <Col>
-                    <div id="managerView"></div >
-                </Col>
-            </Row>
-        </Container>
-    )
+    render() {
+        return (
+            <Container>
+                <Row>
+                    <Col md="auto">
+                        <Nav variant="tabs" defaultActiveKey="baseData" className="flex-row justify-content-center"
+                            style={{ border: 'none', marginTop: "1vh", width: "87.5vw", fontSize: "1.2vw" }}>
+                            <Nav.Link disabled={this.state.isSorting} onClick={this.fbasePage} style={{ color: "black", fontFamily: "font-family: 'Doppio One', sans-serif" }}>Mainpage</Nav.Link>
+                            <Nav.Link disabled={this.state.isSorting} onClick={this.Merge_page} style={{ color: "black", fontFamily: "font-family: 'Doppio One', sans-serif" }}>Merge Sort</Nav.Link>
+                            <Nav.Link disabled={this.state.isSorting} onClick={this.Bubble_page} style={{ color: "black", fontFamily: "font-family: 'Doppio One', sans-serif" }}>Bubble Sort</Nav.Link>
+                            <Nav.Link disabled={this.state.isSorting} onClick={this.Insertion_page} style={{ color: "black", fontFamily: "font-family: 'Doppio One', sans-serif" }}>Insertion Sort</Nav.Link>
+                            <Nav.Link disabled={this.state.isSorting} onClick={this.Quick_page} style={{ color: "black", fontFamily: "font-family: 'Doppio One', sans-serif" }}>Quick Sort</Nav.Link>
+                            <Nav.Link disabled={this.state.isSorting} onClick={this.Heap_page} style={{ color: "black", fontFamily: "font-family: 'Doppio One', sans-serif" }}>Heap Sort</Nav.Link>
+                        </Nav>
+                    </Col>
+                    <Col>
+                        <div id="managerView"></div >
+                    </Col>
+                </Row>
+            </Container>
+        );
+    }
 }
 
 export default Main;
+
