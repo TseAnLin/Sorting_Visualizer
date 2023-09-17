@@ -177,7 +177,7 @@ class Home extends React.Component {
                             <row>
                                 <div id="text-block">
                                     <h2>Description</h2>
-                                    <p>Merge Sort that divides the data structure recursively until the subsequences contain only one element. At this point, the subsequences get merged and ordered sequentially. To do so, the algorithm progressively builds the sorted sublist by adding each time the minimum element of the next two unsorted subsequences until there is only one sublist remaining. This will be the sorted data structure</p>
+                                    <p>Merge Sort that divides the data structure recursively until the subsequences contain only one element. At this point, the subsequences get merged and ordered sequentially. To do so, the algorithm progressively builds the sorted sublist by adding each time the minimum element of the next two unsorted subsequences until there is only one sublist remaining. This will be the sorted data structure.</p>
                                 </div>
                             </row>
                             <row>

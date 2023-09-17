@@ -114,7 +114,7 @@ class Home extends React.Component {
                             <row>
                                 <div id="text-block">
                                     <h2>Description</h2>
-                                    <p>Bubblesort that divides the data structure recursively until the subsequences contain only one element. At this point, the subsequences get merged and ordered sequentially. To do so, the algorithm progressively builds the sorted sublist by adding each time the minimum element of the next two unsorted subsequences until there is only one sublist remaining. This will be the sorted data structure</p>
+                                    <p>Bubble sort is a basic algorithm for arranging a string of numbers or other elements in the correct order. The method works by examining each set of adjacent elements in the string, from left to right, switching their positions if they are out of order. The algorithm then repeats this process until it can run through the entire string and find no two elements that need to be swapped.</p>
                                 </div>
                             </row>
                             <row>
@@ -122,7 +122,7 @@ class Home extends React.Component {
                                     <h3>Complexity</h3>
                                     <p>Average : O(n ×  n)</p>
                                     <p>Best : O(n )</p>
-                                    <p>Worst : O(n n ×  n)</p>
+                                    <p>Worst : O(n ×  n)</p>
                                     <p>Space : O(1)</p>
                                 </div>
 

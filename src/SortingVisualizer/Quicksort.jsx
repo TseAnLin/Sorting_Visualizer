@@ -3,7 +3,7 @@ import { getQuickSortAnimations } from '../sortingAlgorithms/sortingAlgorithms.j
 import './SortingVisualizer.css';
 
 // Change this value for the speed of the animations.
-const ANIMATION_SPEED_MS = 5;
+const ANIMATION_SPEED_MS = 1000;
 
 // Change this value for the number of bars (value) in the array.
 const NUMBER_OF_ARRAY_BARS = 100;

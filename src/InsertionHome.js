@@ -120,13 +120,13 @@ class Home extends React.Component {
                             <row>
                                 <div id="text-block">
                                     <h2>Description</h2>
-                                    <p>Insertion sort is a simple sorting algorithm that builds the final sorted array one item at a time. It's less performant than advanced sorting algorithms, but it can still have some advantages: it's really easy to implement and it's efficient on small data structures almost sorted</p>
+                                    <p>Insertion sort is a simple sorting algorithm that builds the final sorted array one item at a time. It's less performant than advanced sorting algorithms, but it can still have some advantages: it's really easy to implement and it's efficient on small data structures almost sorted.</p>
                                 </div>
                             </row>
                             <row>
                                 <div id="text-block-2" >
                                     <h3>Complexity</h3>
-                                    <p>Average : O(n×n)</p>
+                                    <p>Average : O(n × n)</p>
                                     <p>Best : O(n)</p>
                                     <p>Worst : O(n ×  n)</p>
                                     <p>Space : O(1)</p>
