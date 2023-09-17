@@ -1,0 +1,126 @@
+.array-container {
+  margin-top: 4vh;
+  margin-bottom:7vh;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width:75vw;
+  /* background-color: aqua; */
+}
+
+.button {
+  position: absolute;
+  top: 8vw;
+  right: 5vw;
+  transform: translate(0, -100%);
+  display:flex;
+  align-items: center;
+  /* background-color: chocolate; */
+}
+
+.btn {
+  display: inline-block;
+  width: 5vw;
+  height: 4vh;
+  line-height:4.5vh;
+  padding: 0;
+  font-size: 1.75vw;
+  color: white;
+  font-family: 'Dongle', sans-serif;
+}
+
+#reset {
+  background-color: #FC1182;
+}
+
+#sort {
+  background-color: #2EB93C;
+  margin-right: 0.75vw;
+}
+
+.button p {
+  display: inline-block;
+  font-size: 2.5vw;
+  margin-right: 1.5vw;
+  margin-top: 3vh;
+  font-family: 'Dongle', sans-serif;
+}
+
+.bar {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin-top: 5.5vw;
+
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  background-color: #bdc3c7;
+  height: 0.5vw;
+  width: 15vw;
+  border-radius: 5vw;
+  margin-right: 1.5vw;
+  outline: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #FCA311;
+  width: 2vw;
+  height: 2vw;
+  border-radius: 50%;
+  border: 0.2vw solid white;
+  cursor: pointer;
+  transition: .2s ease-in-out;
+}
+
+​ input[type="range"]::-webkit-slider-thumb:hover {
+  background-color: white;
+  border: 0.2vw solid #FCA311;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.5);
+}
+
+.array-bar {
+  display: inline-block;
+  margin: 0 0.02vw;
+}
+
+.title {
+  font-family: 'Doppio One', sans-serif;
+  font-size: 3.2vw;
+}
+
+
+.Main {
+  margin: 0 auto;
+  max-width: 80vw;
+  width: 90%;
+  text-align: justify;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Doppio One', sans-serif;
+}
+
+.Main h2 {
+  font-weight: bold;
+  font-size: 3vw;
+  margin-bottom: 3vh;;
+}
+
+.Main p {
+  line-height: 1.5; 
+  font-size: 1.2vw;
+}
+
+.Main p2 {
+  font-weight: bold;
+  line-height: 1.5;
+  font-size: 1.5vw; 
+  color:#FC1182
+}
